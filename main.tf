@@ -20,6 +20,13 @@ resource "azurerm_resource_group" "myresourcegroup" {
   }
 }
 
+module "network" {
+  source  = "app.terraform.io/terraform-cloud-azure-coles/network/azurerm"
+  version = "3.5.0"
+  resource_group_name = "${var.prefix}-workshop"
+}
+
+
 resource "azurerm_virtual_network" "vnet" {
   name                = "${var.prefix}-vnet"
   location            = azurerm_resource_group.myresourcegroup.location
